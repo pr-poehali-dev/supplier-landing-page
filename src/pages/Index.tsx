@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
@@ -11,6 +15,22 @@ const Index = () => {
     clients: 0,
     products: 0
   });
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const productionImages = [
+    { src: '/img/79d40457-5538-4a32-af1b-d3d17764253c.jpg', title: 'Современный склад оборудования' },
+    { src: '/img/c91365a4-c448-4931-b0cf-8aa4e9f489ba.jpg', title: 'Производственная линия' },
+    { src: '/img/0bc6d947-b0d5-40ea-b96c-0e7cbc5deefa.jpg', title: 'Отдел контроля качества' }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % productionImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [productionImages.length]);
 
   useEffect(() => {
     const animateCounter = (target: number, current: number, setter: (val: number) => void) => {
@@ -153,10 +173,40 @@ const Index = () => {
                 </div>
               </div>
 
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
-                <Icon name="Phone" size={20} className="mr-2" />
-                Связаться с нами
-              </Button>
+              <Dialog open={isContactModalOpen} onOpenChange={setIsContactModalOpen}>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
+                    <Icon name="Phone" size={20} className="mr-2" />
+                    Связаться с нами
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Связаться с менеджером</DialogTitle>
+                  </DialogHeader>
+                  <form className="space-y-4">
+                    <div>
+                      <Label htmlFor="name">Имя</Label>
+                      <Input id="name" placeholder="Ваше имя" />
+                    </div>
+                    <div>
+                      <Label htmlFor="company">Компания</Label>
+                      <Input id="company" placeholder="Название компании" />
+                    </div>
+                    <div>
+                      <Label htmlFor="phone">Телефон</Label>
+                      <Input id="phone" placeholder="+7 (___) ___-__-__" />
+                    </div>
+                    <div>
+                      <Label htmlFor="message">Сообщение</Label>
+                      <Textarea id="message" placeholder="Опишите ваши потребности" />
+                    </div>
+                    <Button type="submit" className="w-full">
+                      Отправить заявку
+                    </Button>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </div>
 
             <div className="hidden lg:block">
@@ -185,11 +235,34 @@ const Index = () => {
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <div>
-              <img 
-                src="/placeholder.svg" 
-                alt="Руководитель компании" 
-                className="w-full h-80 object-cover rounded-lg shadow-lg mb-6"
-              />
+              <div className="relative w-full h-80 rounded-lg shadow-lg mb-6 overflow-hidden">
+                {productionImages.map((image, index) => (
+                  <img 
+                    key={index}
+                    src={image.src} 
+                    alt={image.title}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                      index === currentSlide ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                ))}
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-black/70 text-white px-4 py-2 rounded-lg">
+                    <p className="text-sm font-medium">{productionImages[currentSlide]?.title}</p>
+                  </div>
+                </div>
+                <div className="absolute bottom-4 right-4 flex space-x-2">
+                  {productionImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        index === currentSlide ? 'bg-white' : 'bg-white/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
               <blockquote className="text-lg italic text-muted-foreground border-l-4 border-primary pl-4">
                 "Мы строим долгосрочные партнерские отношения, предлагая не просто товары, 
                 а комплексные решения для вашего бизнеса."
@@ -319,6 +392,22 @@ const Index = () => {
                   oldPrice: '1 200 ₽',
                   image: '/placeholder.svg',
                   specs: '1200мм, 4000K'
+                },
+                {
+                  name: 'Пускатель электромагнитный ПМЛ',
+                  model: 'ПМЛ-1210',
+                  price: '1 450 ₽',
+                  oldPrice: '1 680 ₽',
+                  image: '/placeholder.svg',
+                  specs: '12А, 380В, IP54'
+                },
+                {
+                  name: 'Трансформатор тока ТТИ-А',
+                  model: 'ТТИ-А 30/5А',
+                  price: '2 340 ₽',
+                  oldPrice: null,
+                  image: '/placeholder.svg',
+                  specs: 'Класс 0.5, 10ВА'
                 }
               ].map((product, index) => (
                 <Card key={index} className="group hover:shadow-xl transition-all duration-300">
@@ -518,10 +607,36 @@ const Index = () => {
                   <p className="text-sm text-muted-foreground mb-3">
                     {index === 0 ? 'Генеральный директор' : index === 1 ? 'Менеджер по продажам' : 'Начальник склада'}
                   </p>
-                  <Button variant="outline" size="sm">
-                    <Icon name="Mail" size={16} className="mr-2" />
-                    Связаться
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        <Icon name="Mail" size={16} className="mr-2" />
+                        Связаться
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-md">
+                      <DialogHeader>
+                        <DialogTitle>Связаться с {name}</DialogTitle>
+                      </DialogHeader>
+                      <form className="space-y-4">
+                        <div>
+                          <Label htmlFor="team-name">Ваше имя</Label>
+                          <Input id="team-name" placeholder="Представьтесь" />
+                        </div>
+                        <div>
+                          <Label htmlFor="team-phone">Телефон</Label>
+                          <Input id="team-phone" placeholder="+7 (___) ___-__-__" />
+                        </div>
+                        <div>
+                          <Label htmlFor="team-question">Вопрос</Label>
+                          <Textarea id="team-question" placeholder="Ваш вопрос" />
+                        </div>
+                        <Button type="submit" className="w-full">
+                          Отправить
+                        </Button>
+                      </form>
+                    </DialogContent>
+                  </Dialog>
                 </CardContent>
               </Card>
             ))}
@@ -582,16 +697,57 @@ const Index = () => {
                 </div>
               </div>
 
-              <Button className="w-full bg-primary hover:bg-primary/90">
-                <Icon name="MessageSquare" size={20} className="mr-2" />
-                Написать нам
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="w-full bg-primary hover:bg-primary/90">
+                    <Icon name="MessageSquare" size={20} className="mr-2" />
+                    Написать нам
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Написать сообщение</DialogTitle>
+                  </DialogHeader>
+                  <form className="space-y-4">
+                    <div>
+                      <Label htmlFor="contact-name">Имя</Label>
+                      <Input id="contact-name" placeholder="Ваше имя" />
+                    </div>
+                    <div>
+                      <Label htmlFor="contact-email">Email</Label>
+                      <Input id="contact-email" type="email" placeholder="your@email.com" />
+                    </div>
+                    <div>
+                      <Label htmlFor="contact-subject">Тема</Label>
+                      <Input id="contact-subject" placeholder="Тема сообщения" />
+                    </div>
+                    <div>
+                      <Label htmlFor="contact-message">Сообщение</Label>
+                      <Textarea id="contact-message" placeholder="Ваше сообщение" className="min-h-[100px]" />
+                    </div>
+                    <Button type="submit" className="w-full">
+                      Отправить сообщение
+                    </Button>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </div>
 
-            <div className="bg-slate-100 rounded-lg h-96 flex items-center justify-center">
-              <div className="text-center text-muted-foreground">
-                <Icon name="Map" size={48} className="mx-auto mb-2" />
-                <p>Интерактивная карта</p>
+            <div className="relative rounded-lg h-96 overflow-hidden shadow-lg">
+              <iframe
+                src="https://yandex.ru/map-widget/v1/?um=constructor%3A7a7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f&amp;source=constructor"
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                className="rounded-lg"
+                title="Карта расположения ООО Вектор"
+              ></iframe>
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm p-3 rounded-lg shadow-md">
+                <div className="flex items-center space-x-2">
+                  <Icon name="MapPin" size={16} className="text-primary" />
+                  <span className="text-sm font-medium">ООО «Вектор»</span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">ул. Земляной вал, д. 27</p>
               </div>
             </div>
           </div>
