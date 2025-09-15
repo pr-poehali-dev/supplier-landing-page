@@ -594,49 +594,51 @@ const Index = () => {
             </p>
           </div>
 
+          {/* Group Photo */}
+          <div className="mb-12">
+            <img 
+              src="/img/e6dcfa08-82f7-469e-824f-b728707b1784.jpg"
+              alt="Команда ООО Вектор"
+              className="w-full max-w-4xl mx-auto h-96 object-cover rounded-lg shadow-lg"
+            />
+            <p className="text-center text-muted-foreground mt-4 italic">
+              Наша дружная команда профессионалов готова решить любые задачи наших клиентов
+            </p>
+          </div>
+
+          {/* Key Team Members */}
           <div className="grid md:grid-cols-3 gap-8">
-            {['Александр Петров', 'Елена Сидорова', 'Михаил Козлов'].map((name, index) => (
+            {[
+              { 
+                name: 'Александр Петров', 
+                position: 'Генеральный директор',
+                experience: 'Опыт в отрасли 15+ лет',
+                education: 'МЭИ, инженер-электрик'
+              },
+              { 
+                name: 'Елена Сидорова', 
+                position: 'Менеджер по продажам',
+                experience: 'Опыт продаж 8+ лет',
+                education: 'МГТУ им. Баумана'
+              },
+              { 
+                name: 'Михаил Козлов', 
+                position: 'Начальник логистики',
+                experience: 'Опыт в логистике 12+ лет',
+                education: 'МАДИ, логистика'
+              }
+            ].map((member, index) => (
               <Card key={index} className="text-center">
                 <CardContent className="p-6">
                   <img 
                     src="/placeholder.svg" 
-                    alt={name}
-                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+                    alt={member.name}
+                    className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-primary/10"
                   />
-                  <h3 className="font-montserrat font-semibold text-foreground mb-1">{name}</h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    {index === 0 ? 'Генеральный директор' : index === 1 ? 'Менеджер по продажам' : 'Начальник склада'}
-                  </p>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" size="sm">
-                        <Icon name="Mail" size={16} className="mr-2" />
-                        Связаться
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-md">
-                      <DialogHeader>
-                        <DialogTitle>Связаться с {name}</DialogTitle>
-                      </DialogHeader>
-                      <form className="space-y-4">
-                        <div>
-                          <Label htmlFor="team-name">Ваше имя</Label>
-                          <Input id="team-name" placeholder="Представьтесь" />
-                        </div>
-                        <div>
-                          <Label htmlFor="team-phone">Телефон</Label>
-                          <Input id="team-phone" placeholder="+7 (___) ___-__-__" />
-                        </div>
-                        <div>
-                          <Label htmlFor="team-question">Вопрос</Label>
-                          <Textarea id="team-question" placeholder="Ваш вопрос" />
-                        </div>
-                        <Button type="submit" className="w-full">
-                          Отправить
-                        </Button>
-                      </form>
-                    </DialogContent>
-                  </Dialog>
+                  <h3 className="font-montserrat font-semibold text-foreground mb-1 text-lg">{member.name}</h3>
+                  <p className="text-primary font-medium mb-2">{member.position}</p>
+                  <p className="text-sm text-muted-foreground mb-1">{member.experience}</p>
+                  <p className="text-xs text-muted-foreground">{member.education}</p>
                 </CardContent>
               </Card>
             ))}
