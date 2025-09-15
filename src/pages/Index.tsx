@@ -245,7 +245,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {categories.map((category, index) => (
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 cursor-pointer">
                 <CardContent className="p-6">
@@ -265,6 +265,102 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          {/* Best Sellers */}
+          <div>
+            <h3 className="text-2xl font-montserrat font-bold text-center mb-8">Хиты продаж</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  name: 'Частотный преобразователь ABB ACS580',
+                  model: 'ACS580-01-023A-4',
+                  price: '45 890 ₽',
+                  oldPrice: '52 000 ₽',
+                  image: '/placeholder.svg',
+                  specs: '11 кВт, 380В, IP21'
+                },
+                {
+                  name: 'Контактор Schneider Electric TeSys D',
+                  model: 'LC1D25M7',
+                  price: '3 240 ₽',
+                  oldPrice: '3 850 ₽',
+                  image: '/placeholder.svg',
+                  specs: '25А, 220В, 3P+1NO'
+                },
+                {
+                  name: 'Автоматический выключатель ABB S203',
+                  model: 'S203-C16',
+                  price: '1 520 ₽',
+                  oldPrice: null,
+                  image: '/placeholder.svg',
+                  specs: '16А, 3P, 6kA'
+                },
+                {
+                  name: 'Кабель ВВГнг-LS 3х2.5',
+                  model: 'ГОСТ 31996-2012',
+                  price: '92 ₽/м',
+                  oldPrice: '108 ₽/м',
+                  image: '/placeholder.svg',
+                  specs: 'Медь, негорючий'
+                },
+                {
+                  name: 'Реле времени Finder 80.11',
+                  model: '80.11.0.240.0000',
+                  price: '2 680 ₽',
+                  oldPrice: null,
+                  image: '/placeholder.svg',
+                  specs: '240В, 0.05с-100ч'
+                },
+                {
+                  name: 'Светодиодный светильник Gauss',
+                  model: 'Elementary T8 18W',
+                  price: '890 ₽',
+                  oldPrice: '1 200 ₽',
+                  image: '/placeholder.svg',
+                  specs: '1200мм, 4000K'
+                }
+              ].map((product, index) => (
+                <Card key={index} className="group hover:shadow-xl transition-all duration-300">
+                  <CardContent className="p-4">
+                    <div className="relative mb-4">
+                      <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="w-full h-40 object-cover rounded-lg bg-slate-100"
+                      />
+                      {product.oldPrice && (
+                        <Badge className="absolute top-2 right-2 bg-destructive text-white">
+                          Скидка
+                        </Badge>
+                      )}
+                    </div>
+                    
+                    <div className="space-y-2 mb-4">
+                      <h4 className="font-montserrat font-semibold text-sm leading-tight">{product.name}</h4>
+                      <p className="text-xs text-muted-foreground">{product.model}</p>
+                      <p className="text-xs text-muted-foreground">{product.specs}</p>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="font-bold text-lg text-accent">{product.price}</div>
+                          {product.oldPrice && (
+                            <div className="text-xs text-muted-foreground line-through">{product.oldPrice}</div>
+                          )}
+                        </div>
+                      </div>
+                      
+                      <Button size="sm" className="w-full bg-primary hover:bg-primary/90">
+                        <Icon name="ShoppingCart" size={14} className="mr-2" />
+                        В корзину
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
