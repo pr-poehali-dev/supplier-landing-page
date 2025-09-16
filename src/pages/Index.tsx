@@ -129,24 +129,24 @@ const Index = () => {
               <img 
                 src="/img/00a76913-d44f-4dbf-a746-5d2c4e078cc7.jpg" 
                 alt="Логотип ООО Вектор" 
-                className="w-16 h-16 rounded-lg shadow-md"
+                className="w-20 h-20 rounded-lg shadow-md"
               />
-              <div className="flex items-center space-x-3">
-                <div>
+              <div>
+                <div className="flex items-center space-x-3 mb-1">
                   <h1 className="text-2xl font-montserrat font-bold text-foreground">ООО «Вектор»</h1>
-                  <p className="text-muted-foreground">Надежный поставщик с 2010 года</p>
-                </div>
-                <div className="relative group">
-                  <div className="p-2 bg-green-100 rounded-full cursor-pointer">
-                    <Icon name="ShieldCheck" size={20} className="text-green-600" />
-                  </div>
-                  <div className="absolute left-full ml-2 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                    <div className="bg-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap">
-                      Компания проверена по ЭДО
-                      <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
+                  <div className="relative group">
+                    <div className="p-1.5 bg-green-100 rounded-full cursor-pointer">
+                      <Icon name="ShieldCheck" size={18} className="text-green-600" />
+                    </div>
+                    <div className="absolute left-full ml-2 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                      <div className="bg-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap">
+                        Компания проверена по ЭДО
+                        <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <p className="text-muted-foreground">Надежный поставщик с 2010 года</p>
               </div>
             </div>
             <div></div>
@@ -220,11 +220,14 @@ const Index = () => {
             </div>
 
             <div className="hidden lg:block">
-              <img 
-                src="/placeholder.svg" 
-                alt="Промышленное оборудование" 
-                className="w-full h-80 object-cover rounded-lg shadow-lg"
-              />
+              <div className="bg-slate-100 rounded-lg h-80 flex items-center justify-center shadow-lg">
+                <div className="text-center text-muted-foreground">
+                  <Icon name="Play" size={64} className="mx-auto mb-4 text-primary" />
+                  <p className="font-montserrat font-semibold text-lg mb-2">Промо-ролик</p>
+                  <p className="text-sm">О компании ООО "Вектор"</p>
+                  <p className="text-xs mt-2">Нажмите для просмотра</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
