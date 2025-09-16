@@ -414,8 +414,8 @@ const Index = () => {
                   specs: 'Класс 0.5, 10ВА'
                 }
               ].map((product, index) => (
-                <Card key={index} className="group hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-4">
+                <Card key={index} className="group hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+                  <CardContent className="p-4 flex flex-col h-full">
                     <div className="relative mb-4">
                       <img 
                         src={product.image} 
@@ -429,13 +429,13 @@ const Index = () => {
                       )}
                     </div>
                     
-                    <div className="space-y-2 mb-4">
+                    <div className="space-y-2 mb-4 flex-grow">
                       <h4 className="font-montserrat font-semibold text-sm leading-tight">{product.name}</h4>
                       <p className="text-xs text-muted-foreground">{product.model}</p>
                       <p className="text-xs text-muted-foreground">{product.specs}</p>
                     </div>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-3 mt-auto">
                       <div className="flex items-center justify-between">
                         <div>
                           <div className="font-bold text-lg text-accent">{product.price}</div>
