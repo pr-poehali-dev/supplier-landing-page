@@ -562,28 +562,126 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-montserrat font-bold mb-4">Отзывы о нас</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Благодарственные письма и отзывы наших партнеров
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6">
-                <CardContent className="p-0">
-                  <div className="flex items-center space-x-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Icon key={i} name="Star" size={16} className="text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <blockquote className="text-muted-foreground mb-4 italic">
-                    "{testimonial.text}"
-                  </blockquote>
-                  <div className="border-t pt-4">
-                    <div className="font-montserrat font-semibold text-foreground">{testimonial.author}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.position}</div>
-                    <div className="text-sm font-medium text-primary">{testimonial.company}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+          {/* Thank You Letters */}
+          <div className="mb-12">
+            <h3 className="text-xl font-montserrat font-semibold mb-6 text-center">Благодарственные письма</h3>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="group cursor-pointer">
+                <img 
+                  src="/img/c6c09836-0f30-4733-82a0-40186c8bef1e.jpg"
+                  alt="Благодарственное письмо ОАО Нефтехимпром"
+                  className="w-full h-80 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-shadow"
+                />
+                <p className="text-center text-sm text-muted-foreground mt-3">
+                  ОАО "Нефтехимпром" - поставка электрооборудования
+                </p>
+              </div>
+              <div className="group cursor-pointer">
+                <img 
+                  src="/img/ad6c617c-281d-46aa-8fa0-f00b9a2e586a.jpg"
+                  alt="Сертификат благодарности ООО СтройИндустрия"
+                  className="w-full h-80 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-shadow"
+                />
+                <p className="text-center text-sm text-muted-foreground mt-3">
+                  ООО "СтройИндустрия" - комплексная поставка оборудования
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Video Reviews Section */}
+          <div className="mb-12">
+            <h3 className="text-xl font-montserrat font-semibold mb-6 text-center">Видео-отзывы</h3>
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-slate-100 rounded-lg h-64 flex items-center justify-center">
+                <div className="text-center text-muted-foreground">
+                  <Icon name="Play" size={48} className="mx-auto mb-4" />
+                  <p className="font-medium">Видео-отзыв от ОАО "Энергомаш"</p>
+                  <p className="text-sm">Генеральный директор о сотрудничестве</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Client Reviews */}
+          <div>
+            <h3 className="text-xl font-montserrat font-semibold mb-6 text-center">Отзывы клиентов</h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  company: 'ОАО "Нефтехимпром"',
+                  author: 'Сергей Петрович Иванов',
+                  position: 'Главный инженер',
+                  industry: 'Нефтехимическая промышленность',
+                  text: 'Сотрудничаем с Вектором уже 5 лет. Всегда качественное оборудование и своевременные поставки. Особенно ценим техническую поддержку.',
+                  rating: 5
+                },
+                {
+                  company: 'ООО "СтройИндустрия"',
+                  author: 'Марина Владимировна Козлова',
+                  position: 'Начальник отдела снабжения',
+                  industry: 'Строительство и девелопмент',
+                  text: 'Отличный поставщик! Конкурентные цены и профессиональная техническая поддержка. Рекомендуем как надежного партнера.',
+                  rating: 5
+                },
+                {
+                  company: 'ЗАО "ЭнергоСеть"',
+                  author: 'Александр Николаевич Петров',
+                  position: 'Технический директор',
+                  industry: 'Энергетика и электросети',
+                  text: 'Качественное оборудование по разумным ценам. Быстрая доставка и полный комплект документов. Работаем уже 3 года.',
+                  rating: 5
+                },
+                {
+                  company: 'ООО "МашиноСтрой"',
+                  author: 'Елена Викторовна Сидорова',
+                  position: 'Главный энергетик',
+                  industry: 'Машиностроение',
+                  text: 'Профессиональный подход к каждому заказу. Помогают с подбором оборудования и консультируют по техническим вопросам.',
+                  rating: 5
+                },
+                {
+                  company: 'АО "ПромАвтоматика"',
+                  author: 'Дмитрий Алексеевич Волков',
+                  position: 'Руководитель проектов',
+                  industry: 'Промышленная автоматизация',
+                  text: 'Сотрудничество с Вектором позволило нам значительно сократить время на закупки. Отличный сервис и качество.',
+                  rating: 5
+                },
+                {
+                  company: 'ООО "ТехноПарк"',
+                  author: 'Ольга Сергеевна Морозова',
+                  position: 'Коммерческий директор',
+                  industry: 'Производство оборудования',
+                  text: 'Работаем с Вектором по долгосрочным контрактам. Ценим стабильность поставок и гибкие условия оплаты.',
+                  rating: 5
+                }
+              ].map((testimonial, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Icon key={i} name="Star" size={16} className="text-yellow-400 fill-current" />
+                      ))}
+                    </div>
+                    <blockquote className="text-muted-foreground mb-4 italic text-sm leading-relaxed">
+                      "{testimonial.text}"
+                    </blockquote>
+                    <div className="border-t pt-4 space-y-1">
+                      <div className="font-montserrat font-semibold text-foreground text-sm">{testimonial.author}</div>
+                      <div className="text-xs text-muted-foreground">{testimonial.position}</div>
+                      <div className="text-xs font-medium text-primary">{testimonial.company}</div>
+                      <div className="text-xs text-muted-foreground italic">{testimonial.industry}</div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
       </section>
