@@ -131,15 +131,25 @@ const Index = () => {
                 alt="Логотип ООО Вектор" 
                 className="w-16 h-16 rounded-lg shadow-md"
               />
-              <div>
-                <h1 className="text-2xl font-montserrat font-bold text-foreground">ООО «Вектор»</h1>
-                <p className="text-muted-foreground">Надежный поставщик с 2010 года</p>
+              <div className="flex items-center space-x-3">
+                <div>
+                  <h1 className="text-2xl font-montserrat font-bold text-foreground">ООО «Вектор»</h1>
+                  <p className="text-muted-foreground">Надежный поставщик с 2010 года</p>
+                </div>
+                <div className="relative group">
+                  <div className="p-2 bg-green-100 rounded-full cursor-pointer">
+                    <Icon name="ShieldCheck" size={20} className="text-green-600" />
+                  </div>
+                  <div className="absolute left-full ml-2 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    <div className="bg-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap">
+                      Компания проверена по ЭДО
+                      <div className="absolute left-0 top-1/2 transform -translate-x-1 -translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <Badge className="bg-accent text-accent-foreground">
-              <Icon name="Shield" size={16} className="mr-2" />
-              Проверено по ЭДО
-            </Badge>
+            <div></div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 items-center">
@@ -225,12 +235,6 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-montserrat font-bold mb-4">О компании</h2>
-            <div className="flex items-center justify-center space-x-2 mb-6">
-              <Badge className="bg-accent text-accent-foreground">
-                <Icon name="ShieldCheck" size={16} className="mr-2" />
-                Компания проверена по ЭДО
-              </Badge>
-            </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
