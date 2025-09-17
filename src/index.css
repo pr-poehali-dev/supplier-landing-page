@@ -36,6 +36,18 @@
 
     --radius: 0.5rem;
 
+    /* Brand colors */
+    --brand-50: 219 100% 97%;
+    --brand-100: 218 94% 91%;
+    --brand-200: 219 92% 82%;
+    --brand-300: 218 89% 70%;
+    --brand-400: 218 85% 57%;
+    --brand-500: 217 91% 44%;
+    --brand-600: 217 95% 35%;
+    --brand-700: 218 95% 28%;
+    --brand-800: 218 89% 22%;
+    --brand-900: 218 79% 18%;
+
     --sidebar-background: 0 0% 98%;
 
     --sidebar-foreground: 240 5.3% 26.1%;

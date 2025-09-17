@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import Icon from '@/components/ui/icon';
+import ThemeCustomizer from '@/components/ThemeCustomizer';
 
 const Index = () => {
   const [counters, setCounters] = useState({
@@ -357,7 +358,7 @@ const Index = () => {
                   model: 'ACS580-01-023A-4',
                   price: '45 890 ₽',
                   oldPrice: '52 000 ₽',
-                  image: '/placeholder.svg',
+                  image: '/img/075b5fde-14e0-4478-9329-c2b98531873b.jpg',
                   specs: '11 кВт, 380В, IP21'
                 },
                 {
@@ -365,7 +366,7 @@ const Index = () => {
                   model: 'LC1D25M7',
                   price: '3 240 ₽',
                   oldPrice: '3 850 ₽',
-                  image: '/placeholder.svg',
+                  image: '/img/fcd21344-8d7f-440d-b016-6dd634715416.jpg',
                   specs: '25А, 220В, 3P+1NO'
                 },
                 {
@@ -373,7 +374,7 @@ const Index = () => {
                   model: 'S203-C16',
                   price: '1 520 ₽',
                   oldPrice: null,
-                  image: '/placeholder.svg',
+                  image: '/img/fcd21344-8d7f-440d-b016-6dd634715416.jpg',
                   specs: '16А, 3P, 6kA'
                 },
                 {
@@ -381,7 +382,7 @@ const Index = () => {
                   model: 'ГОСТ 31996-2012',
                   price: '92 ₽/м',
                   oldPrice: '108 ₽/м',
-                  image: '/placeholder.svg',
+                  image: '/img/2a951cc2-f71c-42d4-bc5e-262cf17943a2.jpg',
                   specs: 'Медь, негорючий'
                 },
                 {
@@ -389,7 +390,7 @@ const Index = () => {
                   model: '80.11.0.240.0000',
                   price: '2 680 ₽',
                   oldPrice: null,
-                  image: '/placeholder.svg',
+                  image: '/img/2a951cc2-f71c-42d4-bc5e-262cf17943a2.jpg',
                   specs: '240В, 0.05с-100ч'
                 },
                 {
@@ -397,7 +398,7 @@ const Index = () => {
                   model: 'Elementary T8 18W',
                   price: '890 ₽',
                   oldPrice: '1 200 ₽',
-                  image: '/placeholder.svg',
+                  image: '/img/2a951cc2-f71c-42d4-bc5e-262cf17943a2.jpg',
                   specs: '1200мм, 4000K'
                 },
                 {
@@ -405,7 +406,7 @@ const Index = () => {
                   model: 'ПМЛ-1210',
                   price: '1 450 ₽',
                   oldPrice: '1 680 ₽',
-                  image: '/placeholder.svg',
+                  image: '/img/2a951cc2-f71c-42d4-bc5e-262cf17943a2.jpg',
                   specs: '12А, 380В, IP54'
                 },
                 {
@@ -413,7 +414,7 @@ const Index = () => {
                   model: 'ТТИ-А 30/5А',
                   price: '2 340 ₽',
                   oldPrice: null,
-                  image: '/placeholder.svg',
+                  image: '/img/9faf4438-4dbc-4ce5-b990-71f1db06b60f.jpg',
                   specs: 'Класс 0.5, 10ВА'
                 }
               ].map((product, index) => (
@@ -718,25 +719,28 @@ const Index = () => {
                 name: 'Александр Петров', 
                 position: 'Генеральный директор',
                 experience: 'Опыт в отрасли 15+ лет',
-                education: 'МЭИ, инженер-электрик'
+                education: 'МЭИ, инженер-электрик',
+                image: '/img/5c495095-39f1-41cd-93b2-71fa9973cbe8.jpg'
               },
               { 
                 name: 'Елена Сидорова', 
                 position: 'Менеджер по продажам',
                 experience: 'Опыт продаж 8+ лет',
-                education: 'МГТУ им. Баумана'
+                education: 'МГТУ им. Баумана',
+                image: '/img/fa67c32c-bba5-4eb2-8085-b6fc0ea8b680.jpg'
               },
               { 
                 name: 'Михаил Козлов', 
                 position: 'Начальник логистики',
                 experience: 'Опыт в логистике 12+ лет',
-                education: 'МАДИ, логистика'
+                education: 'МАДИ, логистика',
+                image: '/img/106c2772-b95d-4f48-b849-01366e76929c.jpg'
               }
             ].map((member, index) => (
               <Card key={index} className="text-center">
                 <CardContent className="p-6">
                   <img 
-                    src="/placeholder.svg" 
+                    src={member.image} 
                     alt={member.name}
                     className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-primary/10"
                   />
@@ -932,6 +936,9 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* Theme Customizer */}
+      <ThemeCustomizer />
     </div>
   );
 };
